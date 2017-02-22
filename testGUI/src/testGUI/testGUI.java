@@ -5,31 +5,23 @@ import GUI.MyFrame;
 import GUI.MyJTextArea;
 import GUI.MyPanel;
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
+import listeners.ButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class testGUI {
 
     public static void main(String[] args) {
-//        try {
-//            UIManager.setLookAndFeel(new SeaGlassLookAndFeel());
-//        } catch (UnsupportedLookAndFeelException e) {
-//            e.printStackTrace();
-//        }
-//
-//        JFrame.setDefaultLookAndFeelDecorated(true);
-//        //создаем кнопку
-//      //  MyButton button = new MyButton("Button");
-//        MyJTextArea textArea = new MyJTextArea();
-//        //вкладываем кнопку в панель
-  //      MyPanel panel = new MyPanel("Panel", 200, 200);
-//        //панель с кнопкой вкладываем во фрэйм
-//
-//        MyFrame frame = new MyFrame(400, 400,"Frame", panel);
-//
-//
-//        frame.add(textArea);
+        try {
+            UIManager.setLookAndFeel(new SeaGlassLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
+
+        JFrame.setDefaultLookAndFeelDecorated(true);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -37,22 +29,42 @@ public class testGUI {
         JFrame f = new JFrame("Frame");
         f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        f.setSize(400, 400);
-        f.setVisible(true);
+        f.setMinimumSize(new Dimension(400, 400));
+
+       f.setResizable(false);
+
 
         JTextField tf = new JTextField("JTextField");
         tf.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
         JTextArea textArea = new JTextArea("JTextArea");
+        textArea.setEditable(false);
+        textArea.setFocusable(false);
 
         panel.add(textArea);
+        
+        tf.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JTextField textField = (JTextField) e.getSource();
+                System.out.println(" textField.getText() = " +  textField.getText());
+                textArea.append(textField.getText() + "\n");
+                textArea.update(textArea.getGraphics());
+
+            }
+        });
         panel.add(tf);
+        
 
         //добавляем четыре кнопки
 
-        Button buttonPlus = new Button("+");
-        Button buttonMinus = new Button("-");
-        Button buttonMultiplu = new Button("*");
-        Button buttonDiv = new Button("/");
+        JButton buttonPlus = new JButton("+");
+        buttonPlus.addActionListener(new ButtonListener());
+        JButton buttonMinus = new JButton("-");
+        buttonMinus.addActionListener(new ButtonListener());
+        JButton buttonMultiplu = new JButton("*");
+        buttonMultiplu.addActionListener(new ButtonListener());
+        JButton buttonDiv = new JButton("/");
+        buttonDiv.addActionListener(new ButtonListener());
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
@@ -61,8 +73,12 @@ public class testGUI {
         buttonPanel.add(buttonMultiplu);
         buttonPanel.add(buttonDiv);
 
+
+
         f.getContentPane().add(panel);
         panel.add(buttonPanel);
+
+        f.setVisible(true);
 
     }
 }
