@@ -34,9 +34,9 @@ public class testGUI {
        f.setResizable(false);
 
 
-        JTextField tf = new JTextField("JTextField");
+        JTextField tf = new JTextField();
         tf.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
-        JTextArea textArea = new JTextArea("JTextArea");
+        JTextArea textArea = new JTextArea();
         textArea.setEditable(false);
         textArea.setFocusable(false);
 
@@ -48,8 +48,6 @@ public class testGUI {
                 JTextField textField = (JTextField) e.getSource();
                 System.out.println(" textField.getText() = " +  textField.getText());
                 textArea.append(textField.getText() + "\n");
-                textArea.update(textArea.getGraphics());
-
             }
         });
         panel.add(tf);
@@ -58,13 +56,13 @@ public class testGUI {
         //добавляем четыре кнопки
 
         JButton buttonPlus = new JButton("+");
-        buttonPlus.addActionListener(new ButtonListener());
+        buttonPlus.addActionListener(new ButtonListener(textArea));
         JButton buttonMinus = new JButton("-");
-        buttonMinus.addActionListener(new ButtonListener());
+        buttonMinus.addActionListener(new ButtonListener(textArea));
         JButton buttonMultiplu = new JButton("*");
-        buttonMultiplu.addActionListener(new ButtonListener());
+        buttonMultiplu.addActionListener(new ButtonListener(textArea));
         JButton buttonDiv = new JButton("/");
-        buttonDiv.addActionListener(new ButtonListener());
+        buttonDiv.addActionListener(new ButtonListener(textArea));
 
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
