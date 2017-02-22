@@ -4,25 +4,23 @@ import javax.swing.*;
 import java.awt.*;
 
 public class MyPanel extends JPanel {
-    public MyPanel(String name, int weight, int height) {
-        super.setName(name);
-        super.setSize(weight, height);
-        super.setBorder(BorderFactory.createEtchedBorder());
+
+    public MyPanel() {
     }
 
-    public MyPanel(String name, int weight, int height, Component component) {
-        this(name, weight, height);
-        this.add(component);
-    }
-
-    public MyPanel(String name, int weight, int height, LayoutManager layout) {
-        this(name, weight, height);
+    public MyPanel(LayoutManager layout) {
         this.setLayout(layout);
     }
 
-    public MyPanel(String name, int weight, int height, LayoutManager layout, Component component) {
-        this(name, weight, height);
-        this.setLayout(layout);
-        this.add(component);
+
+    public void add(Component... components)
+    {
+        if (components != null && components.length > 0)
+        {
+            for (Component component : components)
+            {
+                this.add(component);
+            }
+        }
     }
 }

@@ -1,14 +1,12 @@
 package GUI;
 
+import listeners.ButtonListener;
+
 import javax.swing.*;
 
 public class MyButton extends JButton {
-    public MyButton(String text) {
+    public MyButton(String text, JTextArea textArea) {
         super(text);
-    }
-
-    public MyButton(String text, int wight, int height) {
-        this(text);
-        this.setSize(wight, height);
+        this.addActionListener(new ButtonListener(textArea));
     }
 }

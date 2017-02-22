@@ -1,9 +1,5 @@
 package testGUI;
 
-import GUI.MyButton;
-import GUI.MyFrame;
-import GUI.MyJTextArea;
-import GUI.MyPanel;
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 import listeners.ButtonListener;
 

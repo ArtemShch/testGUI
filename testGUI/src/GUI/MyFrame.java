@@ -21,4 +21,20 @@ public class MyFrame extends JFrame {
         this.getContentPane().add(component);
     }
 
+    public MyFrame(String s, Component component) throws HeadlessException {
+        super(s);
+        super.setLocationRelativeTo(null);
+        super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.setMinimumSize(new Dimension(400, 400));
+        super.setResizable(false);
+        super.getContentPane().add(component);
+    }
+
+    public MyFrame(String s) throws HeadlessException {
+        super(s);
+        super.setLocationRelativeTo(null);
+        super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        super.setMinimumSize(new Dimension(400, 400));
+        super.setResizable(false);
+    }
 }
