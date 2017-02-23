@@ -36,6 +36,8 @@ public class Calculator {
         panel.add(textArea, textField, buttonPanel);
 
         MyFrame frame = new MyFrame("Calculator", panel);
-        frame.setVisible(true);
+
+        textField.requestFocusInWindow();
+
     }
 }

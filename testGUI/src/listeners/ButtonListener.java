@@ -3,6 +3,7 @@ package listeners;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public class ButtonListener implements ActionListener {
@@ -27,31 +28,33 @@ public class ButtonListener implements ActionListener {
             {
 
                 String[] expression = textArea.getText().split(" ");
-                long result = 0l;
-                switch (expression[1]){
-                    case "+":
-                        result = Long.parseLong(expression[0]) + Long.parseLong(expression[2]);
-                        break;
-                    case "-":
-                        result = Long.parseLong(expression[0]) - Long.parseLong(expression[2]);
-                        break;
-                    case "*":
-                        result = Long.parseLong(expression[0]) * Long.parseLong(expression[2]);
-                        break;
-                    case "/":
-                        result = Long.parseLong(expression[0]) / Long.parseLong(expression[2]);
-                        break;
+                double result = 0d;
+                try {
+                    switch (expression[1]) {
+                        case "+":
+                            result = Double.parseDouble(expression[0]) + Double.parseDouble(expression[2]);
+                            break;
+                        case "-":
+                            result = Double.parseDouble(expression[0]) - Double.parseDouble(expression[2]);
+                            break;
+                        case "*":
+                            result = Double.parseDouble(expression[0]) * Double.parseDouble(expression[2]);
+                            break;
+                        case "/":
+                            result = Double.parseDouble(expression[0]) / Double.parseDouble(expression[2]);
+                            break;
+                    }
+                }catch (NumberFormatException ex)
+                {
+                    textArea.setText("too large");
                 }
 
-                textArea.append("=\n" + result);
+                textArea.append(" = " + result);
             }
             else if (expressionSize > 3)
             {
                 textArea.setText("");
             }
-
-
-            System.out.println("button.getName() = " + textArea.getText());
         }
     }
 }

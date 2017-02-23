@@ -13,12 +13,14 @@ public class MyFrame extends JFrame {
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         super.setLayout(new FlowLayout());
         super.setVisible(true);
+        super.setVisible(true);
     }
 
     public MyFrame(int wight, int height, String title, Component component)
     {
         this(wight, height, title);
         this.getContentPane().add(component);
+        super.setVisible(true);
     }
 
     public MyFrame(String s, Component component) throws HeadlessException {
@@ -28,6 +30,7 @@ public class MyFrame extends JFrame {
         super.setMinimumSize(new Dimension(400, 400));
         super.setResizable(false);
         super.getContentPane().add(component);
+        super.setVisible(true);
     }
 
     public MyFrame(String s) throws HeadlessException {
@@ -36,5 +39,6 @@ public class MyFrame extends JFrame {
         super.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         super.setMinimumSize(new Dimension(400, 400));
         super.setResizable(false);
+        super.setVisible(true);
     }
 }

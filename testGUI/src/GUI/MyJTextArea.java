@@ -7,5 +7,7 @@ public class MyJTextArea extends JTextArea {
         super();
         this.setEditable(false);
         this.setFocusable(false);
+        this.setLineWrap(true);
+        this.setWrapStyleWord(true);
     }
 }

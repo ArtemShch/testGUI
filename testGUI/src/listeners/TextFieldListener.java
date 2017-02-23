@@ -1,6 +1,7 @@
 package listeners;
 
 import GUI.MyJTextArea;
+import GUI.MyJTextField;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -16,15 +17,27 @@ public class TextFieldListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        JTextField textField = (JTextField) e.getSource();
-        int expressionSize = textArea.getText().split(" ").length;
-        System.out.println("textArea.getText().isEmpty() = " + textArea.getText().isEmpty());
-        System.out.println("textArea.getText() = " + textArea.getText());
-        System.out.println("expressionSize = " + expressionSize);
-        if ((textArea.getText().isEmpty() && expressionSize == 1 || !textArea.getText().isEmpty() && expressionSize == 0) || expressionSize == 2)
+        if (!(e.getSource() instanceof MyJTextField))
         {
-            textArea.append(textField.getText() + " ");
+            return;
+        }
+        JTextField textField = (JTextField) e.getSource();
+
+        String number = textField.getText();
+        if (!number.matches("-?\\d+(\\.\\d+)?"))
+        {
+            textField.setText("");
+            return;
         }
 
+        if (textArea.getText().isEmpty() || textArea.getText().split(" ").length == 2)
+        {
+            textArea.append(textField.getText() + " ");
+            textField.setText("");
+        }
+        else
+        {
+            textField.setText("");
+        }
     }
 }

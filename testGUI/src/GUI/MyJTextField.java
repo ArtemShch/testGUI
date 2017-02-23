@@ -11,5 +11,6 @@ public class MyJTextField extends JTextField {
         super();
         super.addActionListener(new TextFieldListener(textArea));
         super.setMaximumSize(new Dimension(Integer.MAX_VALUE, 10));
+//        super.requestFocusInWindow();
     }
 }
